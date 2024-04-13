@@ -50,14 +50,18 @@ $conn = new mysqli("localhost", "root", "", "phone_db");
 
 
     while($row = mysqli_fetch_assoc($result)) {
+        $id = $row["id"];
  ?>
 
  <tbody>
-<tr>
-    <td><img src="<?php echo $row['image_url']; ?> " class="contact-image" alt=""></td>
-    <td><?php echo $row['name'];?></td>
-    <td><?php echo $row['phone']; ?></td>
-</tr>
+
+ 
+    <tr onclick="window.location='details.php?id=<?php echo $id; ?>'">
+        <td><img src="<?php echo $row['image']; ?> " class="contact-image" alt=""></td>
+        <td><?php echo $row['name'];?></td>
+        <td><?php echo $row['phone']; ?></td>
+    </tr>
+
 <?php } ?>
 
  </tbody>
