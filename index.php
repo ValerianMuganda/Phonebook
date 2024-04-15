@@ -46,7 +46,7 @@ $conn = new mysqli("localhost", "root", "", "phone_db");
     <?php
 
     $sql = "SELECT * FROM `contacts`";
-    $result = mysqli_query($conn,$sql);
+    $result = mysqli_query($conn, $sql);
 
 
     while($row = mysqli_fetch_assoc($result)) {
@@ -56,7 +56,7 @@ $conn = new mysqli("localhost", "root", "", "phone_db");
  <tbody>
 
  
-    <tr onclick="window.location='details.php?id=<?php echo $id; ?>'">
+    <tr onclick="window.location='details.php?id=<?php echo $id;?>'">
         <td><img src="<?php echo $row['image']; ?> " class="contact-image" alt=""></td>
         <td><?php echo $row['name'];?></td>
         <td><?php echo $row['phone']; ?></td>

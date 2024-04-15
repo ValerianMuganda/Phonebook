@@ -2,25 +2,66 @@
 <html>
 <head>
     <title>Contact Details</title>
+    <style>
+    .card {
+      width: 800px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-left:250px;
+      text-align: center;
+      background-color: #f1f1f1;
+      padding: 10px;
+    }
+    img{
+        border-radius: 50%;
+        width: 300px;
+        height: 300px;
+    }
+    </style>
+    
 </head>
 <body>
 
 <h2>Contact Details</h2>
-
 <?php
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-}
+
+$conn = new mysqli("localhost", "root", "", "phone_db");
 
 
-$sql = "SELECT * FROM `students` WHERE `id` = '$id'";
+$id = $_GET["id"];
+
+
+$sql = "SELECT * FROM `contacts` WHERE `id` = '$id'";
 $result = mysqli_query($conn, $sql);
 
-// <div class="card">
-//   <img src="https://via.placeholder.com/300x200" class="card-image" alt="Card Image">
-//   <div class="card-content">
-//     <div class="card-title">Interactive Card with Photo</div>
-//     <div class="card-description">This is an example of an interactive styled card with a photo.</div>
-//     <a href="#" class="card-button">Learn More</a>
-//   </div>
-// </div>
+$row = mysqli_fetch_assoc($result);
+
+
+$image =  $row['image'];
+$name =  $row['name'];
+$phone = $row['phone'];
+echo   <<<ROW
+<div class = "card">
+
+    <img src="$image" alt="Profile Picture">
+    <h2>$name</h2>
+    <p>$phone:</p>
+
+
+</div>
+ROW;
+
+
+
+?>
+
+<input type="button" value="delete" onclick="window.location.href='delete.php?id=<?php echo $row['id']; ?>'" >
+<?php
+
+
+
+
+
+?>
